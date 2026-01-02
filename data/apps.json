@@ -1,0 +1,18 @@
+[
+    {
+        "name": "Food Delivery",
+        "manual": "Food_Delivery_User_Manual_Real_World.docx"
+    },
+    {
+        "name": "E-Commerce",
+        "manual": "ECommerce_User_Manual_Real_World.docx"
+    },
+    {
+        "name": "Travel Booking",
+        "manual": "Travel_Booking_User_Manual_Real_World.docx"
+    },
+    {
+        "name": "Insurance Marketplace",
+        "manual": "Insurance_Marketplace_User_Manual_Real_World.docx"
+    }
+]

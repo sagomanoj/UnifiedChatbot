@@ -32,6 +32,7 @@ h1 {
     margin: 0;
     background: linear-gradient(90deg, #2563eb, #7c3aed);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
@@ -53,6 +54,25 @@ select {
 
 select:hover {
     border-color: var(--primary-color);
+}
+
+.manage-link {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    transition: all 0.2s;
+    background: #eff6ff;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.manage-link:hover {
+    background: #dbeafe;
+    color: var(--secondary-color);
 }
 
 main {
@@ -182,15 +202,22 @@ main {
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .message.bot {
     background: white;
     color: var(--text-color);
     border-bottom-left-radius: 0.25rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     margin-right: auto;
 }
 

@@ -51,39 +51,48 @@ class ChatResponse(BaseModel):
 def read_root():
     return {"message": "Unified Chatbot API is running"}
 
-@app.post("/upload/{app_name}")
-async def upload_manual(app_name: str, file: UploadFile = File(...)):
-    if not file.filename:
-        raise HTTPException(status_code=400, detail="No file uploaded")
-    
-    # Save to temp
-    temp_dir = "data/temp"
-    os.makedirs(temp_dir, exist_ok=True)
-    file_path = f"{temp_dir}/{file.filename}"
-    
+@app.get("/apps")
+async def get_apps():
+    # Return list of strings for the frontend dropdown
+    return rag_service.get_available_apps()
+
+# --- Management Endpoints ---
+
+@app.get("/management/apps")
+async def get_apps_detailed():
+    # Return the full objects (name, manual) for the management dashboard
+    return rag_service.get_apps_full()
+
+@app.post("/management/apps")
+async def add_app(data: dict):
+    name = data.get("name")
+    if not name:
+        raise HTTPException(status_code=400, detail="Name is required")
+    rag_service.add_app(name)
+    return {"message": f"App {name} added"}
+
+@app.delete("/management/apps/{name}")
+async def delete_app(name: str):
+    rag_service.delete_app(name)
+    return {"message": f"App {name} deleted"}
+
+@app.post("/management/upload/{app_name}")
+async def upload_management_manual(app_name: str, file: UploadFile = File(...)):
+    # Manuals directory from rag_service context
+    manuals_dir = "./data/user_manual"
+    if not os.path.exists(manuals_dir):
+        os.makedirs(manuals_dir)
+        
+    file_path = os.path.join(manuals_dir, file.filename)
     with open(file_path, "wb") as buffer:
         shutil.copyfileobj(file.file, buffer)
-        
+    
     try:
-        # Ingest
-        chunks = rag_service.ingest_document(file_path, app_name)
-        
-        # Cleanup
-        os.remove(file_path)
-        
-        return {
-            "message": f"Successfully uploaded {file.filename} for {app_name}",
-            "chunks_added": chunks
-        }
+        chunks = rag_service.ingest_document(file_path, app_name, clear_existing=True)
+        return {"message": f"Manual updated for {app_name}", "filename": file.filename, "chunks": chunks}
     except Exception as e:
-        # Cleanup on error
-        if os.path.exists(file_path):
-            os.remove(file_path)
-        
         import traceback
         traceback.print_exc()
-        print(f"Error during ingestion: {str(e)}")
-        
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/chat", response_model=ChatResponse)
@@ -95,7 +104,3 @@ async def chat(request: ChatRequest):
         import traceback
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
-
-@app.get("/apps")
-def get_apps():
-    return {"apps": rag_service.get_available_apps()}

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
+
 <body>
 
     <header>
@@ -16,11 +18,9 @@
         <div class="controls">
             <label for="app-select">Current Application:</label>
             <select id="app-select">
-                <option value="Food Delivery">Food Delivery</option>
-                <option value="E-Commerce">E-Commerce</option>
-                <option value="Travel Booking">Travel Booking</option>
-                <option value="Insurance Marketplace">Insurance Marketplace</option>
+                <!-- Dynamic choices populated from script.js -->
             </select>
+            <a href="management.html" class="manage-link"><i class="fas fa-cog"></i> Manage Apps</a>
         </div>
     </header>
 
@@ -29,7 +29,7 @@
             <div class="placeholder-img">
                 <i class="fas fa-cubes fa-3x"></i>
             </div>
-            <h2 id="app-title">Food Delivery Dashboard</h2>
+            <h2 id="app-title">Dashboard</h2>
             <p>Welcome to the unified platform. Please select an application context from the header.</p>
         </div>
     </main>
@@ -43,32 +43,25 @@
         <div class="chat-header">
             <div>
                 <h2>AI Assistant</h2>
-                <span class="current-app-badge" id="chat-app-badge">Food Delivery</span>
+                <span class="current-app-badge" id="chat-app-badge">Loading...</span>
             </div>
             <div style="cursor: pointer;" id="close-chat">
                 <i class="fas fa-times"></i>
             </div>
         </div>
-        
+
         <div class="chat-messages" id="chat-messages">
-            <div class="message bot">
-                Hello! I'm your assistant for <b id="welcome-app-name">Food Delivery</b>. How can I help you today?
+            <div class="message bot" id="welcome-message">
+                Hello! Select an application from the header to start chatting.
             </div>
         </div>
 
         <div class="chat-controls">
-            <div class="upload-section">
-                <span><i class="fas fa-file-alt"></i> Context Manual</span>
-                <label class="upload-btn">
-                    <input type="file" id="manual-upload" style="display: none;" accept=".pdf,.txt,.docx">
-                    <span id="upload-status-text">Upload Manual</span>
-                </label>
-            </div>
             <div class="input-group" style="margin-top: 10px;">
                 <input type="text" id="user-input" placeholder="Type a message...">
                 <button class="send-btn" id="send-btn"><i class="fas fa-paper-plane"></i></button>
             </div>
-            
+
             <div style="margin-top: 10px; font-size: 0.8rem; display: flex; align-items: center; gap: 5px;">
                 <input type="checkbox" id="comparison-mode">
                 <label for="comparison-mode" style="cursor: pointer; color: #64748b;">Enable Comparison Mode</label>
@@ -78,4 +71,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
