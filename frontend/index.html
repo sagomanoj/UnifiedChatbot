@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unified Multi-Application Chatbot POC</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <h1>UnifiedPlatform</h1>
+        </div>
+        <div class="controls">
+            <label for="app-select">Current Application:</label>
+            <select id="app-select">
+                <option value="Food Delivery">Food Delivery</option>
+                <option value="E-Commerce">E-Commerce</option>
+                <option value="Travel Booking">Travel Booking</option>
+                <option value="Insurance Marketplace">Insurance Marketplace</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <div class="app-content">
+            <div class="placeholder-img">
+                <i class="fas fa-cubes fa-3x"></i>
+            </div>
+            <h2 id="app-title">Food Delivery Dashboard</h2>
+            <p>Welcome to the unified platform. Please select an application context from the header.</p>
+        </div>
+    </main>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget-btn" id="chat-toggle">
+        <i class="fas fa-comment-dots fa-lg"></i>
+    </div>
+
+    <div class="chat-widget-container" id="chat-container">
+        <div class="chat-header">
+            <div>
+                <h2>AI Assistant</h2>
+                <span class="current-app-badge" id="chat-app-badge">Food Delivery</span>
+            </div>
+            <div style="cursor: pointer;" id="close-chat">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        
+        <div class="chat-messages" id="chat-messages">
+            <div class="message bot">
+                Hello! I'm your assistant for <b id="welcome-app-name">Food Delivery</b>. How can I help you today?
+            </div>
+        </div>
+
+        <div class="chat-controls">
+            <div class="upload-section">
+                <span><i class="fas fa-file-alt"></i> Context Manual</span>
+                <label class="upload-btn">
+                    <input type="file" id="manual-upload" style="display: none;" accept=".pdf,.txt,.docx">
+                    <span id="upload-status-text">Upload Manual</span>
+                </label>
+            </div>
+            <div class="input-group" style="margin-top: 10px;">
+                <input type="text" id="user-input" placeholder="Type a message...">
+                <button class="send-btn" id="send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+            
+            <div style="margin-top: 10px; font-size: 0.8rem; display: flex; align-items: center; gap: 5px;">
+                <input type="checkbox" id="comparison-mode">
+                <label for="comparison-mode" style="cursor: pointer; color: #64748b;">Enable Comparison Mode</label>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

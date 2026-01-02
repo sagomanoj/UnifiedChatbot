@@ -1,0 +1,17 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+.env
+
+# Data and Indexes (Local only)
+data/temp/
+data/faiss_index/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
