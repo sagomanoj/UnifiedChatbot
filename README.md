@@ -16,14 +16,19 @@ A unified chatbot that serves multiple applications (Food Delivery, E-Commerce, 
     pip install -r requirements.txt
     ```
 
-2.  **Run Backend**:
+2.  **Configure Environment**:
+    - Copy `.env.example` to `.env`.
+    - Fill in your `OPENAI_API_KEY` (and Azure settings if applicable).
+
+3.  **Run Backend**:
     ```bash
     uvicorn backend.main:app --reload
     ```
     The API will be available at `http://localhost:8000`.
 
-3.  **Run Frontend**:
-    Open `frontend/index.html` in your browser.
+4.  **Run Frontend**:
+    - For the Chatbot: Open `frontend/index.html` in your browser.
+    - For Management: Open `frontend/management.html` to add apps and upload manuals.
 
 ## Usage
 
